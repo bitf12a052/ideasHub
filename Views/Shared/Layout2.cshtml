@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.11.3.js"></script>
+
+    <style>
+        p {
+            color: white;
+            font-weight: 200;
+            font-size: larger;
+        }
+        #footer {
+            position: fixed;
+            height: 50px;
+            text-decoration-color: red;
+            bottom: 0px;
+            left: 100px;
+            right: 0px;
+            margin-bottom: 0px;
+        }
+
+        body {
+            background-color: white;
+            background-image:url(/images/using.jpg);
+        }
+
+        h6 {
+            font-style: normal;
+            font-family: 'Times New Roman';
+            font-size: 350%;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        h4 {
+            font-style: normal;
+            font-family: Arial;
+            text-align: center;
+            color: white;
+            font-size:x-large;
+        }
+
+
+        h2 {
+            font-style: normal;
+            font-size:x-large;
+            font-family: Arial;
+            text-align: center;
+            color:white;
+        }
+
+
+        h2 {
+            font-style: normal;
+            font-family: 'Times New Roman';
+            text-align: left;
+            top: 50%;
+            margin-left: -20px;
+            color: white;
+            font-size: x-large;
+            font-weight: 300;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        span {
+            color: white;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+    <h6> Business iDEAS Hub </h6>
+    <h4> 3481 XINHUA-- | LAHORE, PK 90210 | 331.485.18.17 </h4>
+
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+
+            <div class="navbar-header">
+
+
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+
+
+
+                    <li><a href="/Home/Index">HOME</a></li>
+                    <li><a href="/Home/About">ABOUT</a></li>
+                    <li><a href="/Home/Contact">CONTACT</a></li>
+                    <li><a href="/Home/BIDEASFEED">B iDEAS FEED</a></li>
+                    <li><a href="/Home/Signin">LOGIN</a></li>
+                    <li><a href="/Admin/ASignin">ADMIN-PANEL</a></li>
+
+                </ul>
+            </div>
+
+        </div>
+
+    </nav>
+
+    @RenderBody()
+
+
+    <hr>
+    <footer class="footer">    COPYRIGHT © BITF12A052-2015 </footer>
+
+
+</body>
+</html>
+

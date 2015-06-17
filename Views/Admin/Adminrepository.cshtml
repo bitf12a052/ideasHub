@@ -1,0 +1,215 @@
+﻿@model MvcApplication1.Models.ideainfo
+
+
+@{
+    Layout = null;
+}
+
+<style type="text/css">
+    .intro-text text-center{
+        color:white;
+    } 
+    h6{
+        color:white;
+    }
+    h4{
+        color:white;
+    }
+
+    h1 {
+        color: white;
+    }
+
+    body {
+        background-image: url(/images/using.jpg);
+    }
+    #topHeading {
+        color: white;
+        position: center;
+    }
+
+    #websiteName {
+        font-size: 20px;
+        font-family: 'Bookman Old Style';
+        font-stretch: normal;
+    }
+
+    #addIdeaDiv {
+        background-color: lightgrey;
+        width: 1300px;
+        padding: 25px;
+        border: 25px solid double black;
+        margin: 25px;
+    }
+    th{
+        color:white;
+    }
+   
+</style>
+
+<head>
+
+    <title></title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</head>
+
+
+<script>
+    $(document).ready(function () {
+        $("#BiDeasSelector").change(function () {
+            var selId = $("#BiDeasSelector").val();
+
+            $("#selector option").remove();
+
+            $.getJSON("/Admin/searchCriteria?id=" + selId, function (data)
+            {
+                $("#selector").append('<option>-Select-</option>');
+
+                $.each(data, function (i, item) {
+                    $("#selector").append('<option value=' + i + '>' + item + '</option>');
+                });
+            });
+        });
+
+
+        $('#selector').change(function ()
+        {
+            var sel = $("#selector option:selected").text();
+
+            var trHTML = '';
+            $("#ideaTable").empty();
+            $.getJSON("/Admin/ideasSearch?id=" + sel, function (data)
+            {
+                $("#ideaTable").append("<thead><tr><th>"+"IDEA TITLE" + "</th>" + "<th>" + "IDEA" + "</th>"  + "<th>" + "USER NAME" + "</th></tr></thead>");
+
+                $.each(data, function (i, item)
+                {
+                   // var actionLink = '@Html.ActionLink("DELETE","delete2","Admin",new {id=1},null)';
+                   // actionLink = actionLink.replace("1", item.Id);
+                    
+                     trHtml=("<tr><td>"+item.Title + "</td>" + "<td>" + item.Paragraph + "</td>"  + "<td>" + item.Uname + "</td>" + "</tr>");
+                     $("#ideaTable").append(trHtml);
+
+                });
+            });
+
+        });
+    });
+
+
+
+</script>
+
+
+</script>
+<body>
+    <h6> Business iDEAS Hub </h6>
+    <h4> 3481 XINHUAA | LAHORE, PK 90210 | 331.485.18.17</h4>
+
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+
+            <div class="navbar-header">
+
+
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+
+
+                    <li><a href="/Admin/AHome">HOME</a></li>
+                    <li><a href="/Admin/Add">ADD</a></li>
+                    <li><a href="/Admin/Delete">DELETE</a></li>
+                    <li><a href="/Admin/ListView">VIEW-ALL</a></li>
+                    <li><a href="/Admin/AdminListView">VIEW-ADMIN</a></li>
+                    <li><a href="/Home/Index">LOGOUT</a></li>
+                   
+
+
+                </ul>
+            </div>
+
+        </div>
+
+    </nav>
+
+    <div class="container">
+        <div class="jumbotron" id="websiteName">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="~/images/idea3.jpg" class="img-rounded" alt="Cinque Terre" width="200" height="150">
+                </div>
+                <div class="col-xs-6">
+                    <h2>ADMIN CONTROL</h2>
+                    <h3>SEARCH IDEAS</h3>
+                    <div class="col-xs-6">
+                        <select id="BiDeasSelector">
+                            <option value="0">-Select ideas-</option>
+                            <option value="1">All</option>
+                            <option value="2">On User basis</option>
+                           
+                        </select>
+
+                        <select id="selector">
+                            <option>-Select-</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h1 class="intro-text text-center">
+                        LIST OF ALL
+                        <strong>iDEAS</strong>
+                    </h1>
+                    <hr>
+                    <table style="width:100%" class="table table-striped table-hover table-bordered" id="ideaTable"></table>
+                    <div id="temp"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="container">
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">
+                        Enter ID to delete an
+                        <strong>iDea</strong>
+                    </h2>
+                    <hr>
+                    <form role="form" method="post" action="/Profile/delete/" >
+                        <div class="form-group col-lg-4">
+                            <label>Idea Id:</label>
+                            <input type="text" class="form-control" name="id">
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <input type="submit" class="btn btn-danger"  value="DELETE" />
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!-- /.container -->
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
